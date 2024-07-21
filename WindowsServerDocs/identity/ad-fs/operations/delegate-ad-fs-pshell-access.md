@@ -3,7 +3,7 @@ title: Delegate AD FS PowerShell commandlet access to nonadmin users
 description: This article describes how to delegate permissions for AD FS PowerShell commandlets to nonadmins.
 author: billmath
 ms.author: billmath
-ms.date: 04/01/2023
+ms.date: 02/13/2024
 ms.topic: article
 ---
 
@@ -40,7 +40,7 @@ Add-KdsRootKey -EffectiveTime ((get-date).addhours(-10)) 
 $adfsServer = Get-ADComputer server01.contoso.com
 
 # Run targeted at domain controller
-$serviceaccount = New-ADServiceAccount gMSAcontoso -DNSHostName <FQDN of the domain containing the KDS key> - PrincipalsAllowedToRetrieveManagedPassword $adfsServer –passthru
+$serviceaccount = New-ADServiceAccount gMSAcontoso -DNSHostName <FQDN of the domain containing the KDS key> -PrincipalsAllowedToRetrieveManagedPassword $adfsServer –passthru
 
 # Run this on every node
 Add-ADComputerServiceAccount -Identity server01.contoso.com -ServiceAccount $ServiceAccount
