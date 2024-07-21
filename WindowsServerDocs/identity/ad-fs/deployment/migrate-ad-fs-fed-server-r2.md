@@ -4,7 +4,7 @@ description: Learn how to export and backup the AD FS configuration data, create
 author: billmath
 ms.author: billmath
 manager: amycolannino
-ms.date: 01/27/2023
+ms.date: 02/13/2024
 ms.topic: article
 ---
 

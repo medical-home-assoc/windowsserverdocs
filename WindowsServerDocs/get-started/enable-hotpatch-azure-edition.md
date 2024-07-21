@@ -1,25 +1,21 @@
 ---
-title: Enable Hotpatch for Azure Edition virtual machines (preview)
+title: Enable Hotpatch for Azure Edition virtual machines
 description:  'Learn how to enable Hotpatch for Windows Server Datacenter: Azure Edition when built using ISO installation media.'
 author: robinharwood
 ms.author: roharwoo
 ms.topic: how-to
-ms.date: 04/18/2023
+ms.date: 10/31/2023
 ---
 
-# Enable Hotpatch for Azure Edition virtual machines built from ISO (preview)
-
-> [!IMPORTANT]
->
-> - Hotpatch for Azure Edition virtual machines built from an ISO is currently in PREVIEW. This
-> information relates to a prerelease product that may be substantially modified before it's
-> released. Microsoft makes no warranties, expressed or implied, with respect to the information
-> provided here.
->
-> - This article only applies when deploying Windows Server Datacenter: Azure Edition from an ISO
-> image. It does not apply when you deploy using the Azure marketplace.
+# Enable Hotpatch for Azure Edition virtual machines built from ISO
 
 Hotpatch for Windows Server 2022 Datacenter: Azure Edition allows you to install security updates on without requiring a reboot after installation. You can use Hotpatch with both Desktop Experience and Server Core. This article will teach you how to configure Hotpatch after installing or upgrading the operating system using an ISO.
+
+> [!NOTE]
+> If you're using the Azure marketplace, don't follow the steps in this article. Instead, use the following images from Azure Marketplace that are ready for Hotpatching:
+>
+> - Windows Server 2022 Datacenter: Azure Edition Hotpatch - Gen2
+> - Windows Server 2022 Datacenter: Azure Edition Core - Gen2
 
 When using Hotpatch for your ISO deployed machine on Azure Stack HCI, there are a few important
 differences with the Hotpatch experience compared with using Hotpatch as part of Azure Automanage
@@ -120,10 +116,10 @@ package. In your PowerShell session, complete the following steps:
 
    ```powershell
    $parameters = @{
-       Uri = "https://go.microsoft.com/fwlink/?linkid=2211714"
-       OutFile = ".\KB5003508.msu"
+        Source = "https://go.microsoft.com/fwlink/?linkid=2211714"
+        Destination = ".\KB5003508.msu"
    }
-   Invoke-WebRequest @parameters
+   Start-BitsTransfer @parameters
    ```
 
 1. To install the Standalone Package, run the following command:
